@@ -3,390 +3,218 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bakasubs | Keskin ve Net</title>
+    <title>Bakasubs | Keskin ve Net Fansub</title>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@800;900&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <style>
-        /* --- TEMA DEĞİŞKENLERİ (Google Material Esintili Keskin Renkler) --- */
         :root {
-            --bg-body: #f1f3f4;
+            --bg-body: #f8f9fa;
             --bg-card: #ffffff;
-            --bg-glass: rgba(255, 255, 255, 0.75);
+            --bg-glass: rgba(255, 255, 255, 0.85);
             --text-main: #202124;
             --text-muted: #5f6368;
-            --accent: #d93025; /* Keskin Kırmızı */
+            --accent: #d93025; 
             --border: #dadce0;
-            --shadow-subtle: 0 1px 2px 0 rgba(60,64,67,0.3), 0 1px 3px 1px rgba(60,64,67,0.15);
-            --shadow-hover: 0 1px 3px 0 rgba(60,64,67,0.3), 0 4px 8px 3px rgba(60,64,67,0.15);
-            --radius: 8px; /* Keskin ama hafif yumuşatılmış köşeler */
-            --transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+            --shadow: 0 1px 3px rgba(60,64,67,0.3);
+            --radius: 4px; /* Google gibi daha keskin köşeler */
+            --transition: all 0.2s ease;
         }
 
         [data-theme="dark"] {
             --bg-body: #121212;
             --bg-card: #1e1e1e;
-            --bg-glass: rgba(30, 30, 30, 0.75);
+            --bg-glass: rgba(30, 30, 30, 0.9);
             --text-main: #e8eaed;
             --text-muted: #9aa0a6;
             --border: #3c4043;
-            --shadow-subtle: 0 1px 2px 0 rgba(0,0,0,0.5), 0 1px 3px 1px rgba(0,0,0,0.3);
-            --shadow-hover: 0 1px 3px 0 rgba(0,0,0,0.5), 0 4px 8px 3px rgba(0,0,0,0.4);
+            --shadow: 0 4px 6px rgba(0,0,0,0.5);
         }
 
-        /* --- GENEL SIFIRLAMA --- */
         * { margin: 0; padding: 0; box-sizing: border-box; }
 
         body {
             font-family: 'Roboto', sans-serif;
             background-color: var(--bg-body);
             color: var(--text-main);
-            line-height: 1.5;
-            transition: background-color var(--transition), color var(--transition);
+            transition: background-color var(--transition);
+            overflow-x: hidden;
         }
 
-        h1, h2, h3, h4 {
-            font-family: 'Montserrat', sans-serif;
-            letter-spacing: -0.5px;
-            color: var(--text-main);
-        }
-
-        a { text-decoration: none; color: inherit; }
-        ul { list-style: none; }
-
-        /* --- NAVBAR (Cam Efektli & Keskin) --- */
+        /* --- NAVBAR (Blur & Transparan) --- */
         .navbar {
             position: fixed;
-            top: 0; left: 0; right: 0;
-            height: 64px;
+            top: 0; width: 100%; height: 64px;
             background: var(--bg-glass);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
             border-bottom: 1px solid var(--border);
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 0 40px;
-            z-index: 1000;
+            display: flex; align-items: center; justify-content: space-between;
+            padding: 0 5%; z-index: 1000;
         }
 
-        .logo {
-            font-size: 1.5rem;
-            font-weight: 900;
-            text-transform: uppercase;
-        }
-
+        .logo { font-family: 'Montserrat'; font-size: 1.6rem; font-weight: 900; letter-spacing: -1px; }
         .logo span { color: var(--accent); }
 
-        .nav-links {
-            display: flex;
-            gap: 24px;
-        }
+        .nav-links { display: flex; gap: 30px; }
+        .nav-links a { font-weight: 700; font-size: 0.9rem; text-transform: uppercase; color: var(--text-muted); transition: var(--transition); }
+        .nav-links a:hover { color: var(--accent); }
 
-        .nav-links a {
-            font-weight: 500;
-            font-size: 0.95rem;
-            color: var(--text-muted);
-            transition: var(--transition);
-        }
+        .theme-toggle { background: none; border: none; font-size: 1.2rem; color: var(--text-main); cursor: pointer; padding: 10px; }
 
-        .nav-links a:hover { color: var(--text-main); }
-
-        .theme-toggle {
-            background: none; border: none;
-            font-size: 1.2rem;
-            color: var(--text-muted);
-            cursor: pointer;
-            padding: 8px;
-            border-radius: 50%;
-            transition: var(--transition);
-        }
-
-        .theme-toggle:hover {
-            color: var(--text-main);
-            background: rgba(128, 128, 128, 0.1);
-        }
-
-        /* --- ANA YAPI (Izgara Düzeni) --- */
+        /* --- LAYOUT --- */
         .container {
-            max-width: 1280px;
-            margin: 100px auto 40px;
+            max-width: 1200px;
+            margin: 100px auto 50px;
             padding: 0 20px;
             display: grid;
-            grid-template-columns: 3fr 1fr; /* Sol içerik, Sağ Sidebar */
-            gap: 32px;
+            grid-template-columns: 8fr 3fr;
+            gap: 30px;
         }
 
-        /* --- İÇERİK BÖLÜMLERİ --- */
-        .section-header {
-            display: flex;
-            align-items: center;
-            margin-bottom: 24px;
-            border-bottom: 2px solid var(--border);
-            padding-bottom: 8px;
-        }
-
-        .section-header h2 {
-            font-size: 1.5rem;
+        /* --- SECTION HEADERS --- */
+        .section-title {
+            font-family: 'Montserrat';
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--accent);
+            display: inline-block;
             text-transform: uppercase;
         }
 
-        .section-header::before {
-            content: '';
-            width: 6px;
-            height: 24px;
-            background: var(--accent);
-            margin-right: 12px;
-            border-radius: 2px;
-        }
-
-        /* --- KART TASARIMI (Google Stili) --- */
-        .grid-layout {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-            gap: 20px;
-            margin-bottom: 40px;
-        }
-
+        /* --- CARDS (Sert Keskin Tasarım) --- */
+        .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 20px; }
+        
         .card {
             background: var(--bg-card);
             border: 1px solid var(--border);
             border-radius: var(--radius);
             overflow: hidden;
-            box-shadow: var(--shadow-subtle);
             transition: var(--transition);
-            display: flex;
-            flex-direction: column;
-            cursor: pointer;
+            position: relative;
         }
 
-        .card:hover {
-            box-shadow: var(--shadow-hover);
-            transform: translateY(-4px);
+        .card:hover { transform: translateY(-5px); box-shadow: var(--shadow); border-color: var(--accent); }
+
+        .card-img { width: 100%; height: 350px; object-fit: cover; filter: grayscale(20%); transition: 0.3s; }
+        .card:hover .card-img { filter: grayscale(0%); }
+
+        .card-body { padding: 15px; }
+        .card-name { font-family: 'Montserrat'; font-size: 0.95rem; font-weight: 800; margin-bottom: 10px; height: 40px; overflow: hidden; }
+        
+        .status-badge {
+            position: absolute; top: 10px; left: 10px;
+            background: var(--accent); color: white;
+            padding: 5px 12px; font-size: 0.7rem; font-weight: 900;
+            text-transform: uppercase; border-radius: 2px;
         }
 
-        .card-img {
-            width: 100%;
-            height: 320px;
-            object-fit: cover;
-            border-bottom: 1px solid var(--border);
-        }
-
-        .card-info { padding: 16px; }
-
-        .card-title {
-            font-size: 1rem;
-            font-weight: 700;
-            line-height: 1.3;
-            margin-bottom: 8px;
-            display: -webkit-box;
-            -webkit-line-clamp: 2; /* Sadece 2 satır göster */
-            -webkit-box-orient: vertical;
-            overflow: hidden;
-        }
-
-        .card-meta {
-            font-size: 0.85rem;
-            color: var(--text-muted);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .badge {
-            background: var(--accent);
-            color: #fff;
-            padding: 4px 8px;
-            border-radius: 4px;
-            font-size: 0.75rem;
-            font-weight: 700;
-        }
-
-        /* --- SIDEBAR (Yan Panel) --- */
-        .sidebar { display: flex; flex-direction: column; gap: 24px; }
-
-        .widget {
+        /* --- SIDEBAR --- */
+        .sidebar-widget {
             background: var(--bg-card);
             border: 1px solid var(--border);
-            border-radius: var(--radius);
             padding: 20px;
-            box-shadow: var(--shadow-subtle);
+            margin-bottom: 25px;
+            border-radius: var(--radius);
         }
 
-        .widget h3 {
-            font-size: 1.1rem;
-            margin-bottom: 16px;
-            border-bottom: 1px solid var(--border);
-            padding-bottom: 8px;
-        }
+        .sidebar-title { font-family: 'Montserrat'; font-size: 1rem; margin-bottom: 15px; font-weight: 900; }
 
         .discord-btn {
-            display: block;
-            background: #5865F2;
-            color: white;
-            text-align: center;
-            padding: 12px;
-            border-radius: var(--radius);
-            font-weight: 700;
-            transition: var(--transition);
+            display: flex; align-items: center; justify-content: center; gap: 10px;
+            background: #5865F2; color: white;
+            padding: 12px; font-weight: 700; border-radius: 4px;
+            transition: 0.3s; text-align: center;
         }
+        .discord-btn:hover { background: #4752C4; transform: scale(1.02); }
 
-        .discord-btn:hover { background: #4752C4; }
-
-        .announcement-list li {
-            font-size: 0.9rem;
-            padding: 8px 0;
-            border-bottom: 1px solid var(--border);
-            color: var(--text-muted);
-        }
-        .announcement-list li:last-child { border-bottom: none; }
-        .announcement-list span { color: var(--accent); font-weight: bold; margin-right: 8px; }
+        .news-item { font-size: 0.85rem; padding: 10px 0; border-bottom: 1px solid var(--border); }
+        .news-item:last-child { border-bottom: none; }
+        .news-date { color: var(--accent); font-weight: 700; margin-right: 5px; }
 
         /* --- FOOTER --- */
-        footer {
-            background: var(--bg-card);
-            border-top: 1px solid var(--border);
-            text-align: center;
-            padding: 24px;
-            color: var(--text-muted);
-            font-size: 0.9rem;
-            margin-top: auto;
-        }
+        footer { border-top: 1px solid var(--border); padding: 40px; text-align: center; font-size: 0.8rem; color: var(--text-muted); }
 
-        /* --- MOBİL UYUM --- */
-        @media (max-width: 992px) {
+        @media (max-width: 900px) {
             .container { grid-template-columns: 1fr; }
-            .nav-links { display: none; } /* Mobil için hamburger menü eklenebilir */
+            .nav-links { display: none; }
         }
     </style>
 </head>
 <body>
 
     <nav class="navbar">
-        <div class="logo">Baka<span>Subs</span></div>
-        <ul class="nav-links">
-            <li><a href="#">Ana Sayfa</a></li>
-            <li><a href="#">Son Bölümler</a></li>
-            <li><a href="#">Projeler</a></li>
-            <li><a href="#">Ekip</a></li>
-        </ul>
-        <button class="theme-toggle" id="theme-btn" aria-label="Tema Değiştir">
+        <div class="logo">BAKA<span>SUBS</span></div>
+        <div class="nav-links">
+            <a href="#">Ana Sayfa</a>
+            <a href="#">Projeler</a>
+            <a href="#">Ekip</a>
+            <a href="https://discord.gg/NdS9RvNVfk" target="_blank">İletişim</a>
+        </div>
+        <button class="theme-toggle" id="theme-toggle">
             <i class="fas fa-moon"></i>
         </button>
     </nav>
 
     <div class="container">
-        
         <main>
-            
-            <section>
-                <div class="section-header">
-                    <h2>Yakında Çıkacak Projeler</h2>
-                </div>
-                <div class="grid-layout">
-                    <div class="card">
-                        <img src="image_1182e1.jpg" alt="Reborn as a Vending Machine" class="card-img">
-                        <div class="card-info">
-                            <div class="card-title">Reborn as a Vending Machine, I Now Wander the Dungeon</div>
-                            <div class="card-meta">
-                                <span><i class="fas fa-clock"></i> Yakında</span>
-                                <span class="badge">Yeni</span>
-                            </div>
-                        </div>
+            <h2 class="section-title">Yakında Gelecekler</h2>
+            <div class="grid">
+                
+                <div class="card">
+                    <span class="status-badge">Yakında</span>
+                    <img src="image_1182e1.jpg" alt="Vending Machine" class="card-img">
+                    <div class="card-body">
+                        <div class="card-name">Reborn as a Vending Machine, I Now Wander the Dungeon</div>
                     </div>
+                </div>
 
-                    <div class="card">
-                        <img src="image_11831d.jpg" alt="Uglymug, Epicfighter" class="card-img">
-                        <div class="card-info">
-                            <div class="card-title">Uglymug, Epicfighter</div>
-                            <div class="card-meta">
-                                <span><i class="fas fa-clock"></i> Yakında</span>
-                                <span class="badge">Yeni</span>
-                            </div>
-                        </div>
+                <div class="card">
+                    <span class="status-badge">Yakında</span>
+                    <img src="image_11831d.jpg" alt="Uglymug" class="card-img">
+                    <div class="card-body">
+                        <div class="card-name">Uglymug, Epicfighter (Busa-Men Gachi-Fighter)</div>
                     </div>
                 </div>
-            </section>
 
-            <section>
-                <div class="section-header">
-                    <h2>Son Çıkan Bölümler</h2>
-                </div>
-                <div class="grid-layout">
-                    <div class="card">
-                        <div style="height: 200px; background: #333; display: flex; align-items:center; justify-content:center; color:#fff;">Örnek Görsel</div>
-                        <div class="card-info">
-                            <div class="card-title">Örnek Anime Serisi Adı</div>
-                            <div class="card-meta">
-                                <span>12. Bölüm</span>
-                                <span>1 Saat Önce</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="card">
-                        <div style="height: 200px; background: #333; display: flex; align-items:center; justify-content:center; color:#fff;">Örnek Görsel</div>
-                        <div class="card-info">
-                            <div class="card-title">Başka Bir Popüler Anime</div>
-                            <div class="card-meta">
-                                <span>5. Bölüm</span>
-                                <span>3 Saat Önce</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
+            </div>
         </main>
 
-        <aside class="sidebar">
-            
-            <div class="widget">
-                <h3><i class="fas fa-bullhorn"></i> Son Duyurular</h3>
-                <ul class="announcement-list">
-                    <li><span>[Site]</span> Yeni tasarımımız yayında! Hataları Discord'dan bildirebilirsiniz.</li>
-                    <li><span>[Çeviri]</span> Reborn as a Vending Machine çevirilerine haftaya başlıyoruz.</li>
-                    <li><span>[Alım]</span> Çevirmen ve Editör alımlarımız açılmıştır.</li>
-                </ul>
+        <aside>
+            <div class="sidebar-widget">
+                <h3 class="sidebar-title">Topluluk</h3>
+                <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 15px;">
+                    Güncel bölümler, alımlar ve sohbet için Discord'a bekliyoruz!
+                </p>
+                <a href="https://discord.gg/NdS9RvNVfk" target="_blank" class="discord-btn">
+                    <i class="fab fa-discord"></i> Discord Sunucumuz
+                </a>
             </div>
 
-            <div class="widget">
-                <h3><i class="fab fa-discord"></i> Topluluğumuza Katıl</h3>
-                <p style="font-size: 0.9rem; color: var(--text-muted); margin-bottom: 12px;">Yeni bölümlerden anında haberdar olmak ve sohbet etmek için sunucumuza gel!</p>
-                <a href="#" class="discord-btn"><i class="fab fa-discord"></i> Discord'a Katıl</a>
+            <div class="sidebar-widget">
+                <h3 class="sidebar-title">Duyurular</h3>
+                <div class="news-item"><span class="news-date">28.03</span> Yeni web sitemiz yayına girdi!</div>
+                <div class="news-item"><span class="news-date">27.03</span> Alımlarımız (Çevirmen/Editör) devam ediyor.</div>
+                <div class="news-item"><span class="news-date">25.03</span> Discord sunucumuza özel etkinlikler başlıyor.</div>
             </div>
-
         </aside>
-
     </div>
 
     <footer>
-        <p>Bakasubs &copy; 2026. Hiçbir video sunucularımızda barındırılmamaktadır.</p>
+        <p>Bakasubs &copy; 2026 | Kalite ve Hızın Adresi</p>
     </footer>
 
     <script>
-        const themeBtn = document.getElementById('theme-btn');
-        const icon = themeBtn.querySelector('i');
-        const htmlElement = document.documentElement;
-
-        const savedTheme = localStorage.getItem('bakasubs-theme') || 'dark';
-        htmlElement.setAttribute('data-theme', savedTheme);
-        updateIcon(savedTheme);
-
-        themeBtn.addEventListener('click', () => {
-            const currentTheme = htmlElement.getAttribute('data-theme');
+        const btn = document.getElementById('theme-toggle');
+        const html = document.documentElement;
+        
+        btn.addEventListener('click', () => {
+            const currentTheme = html.getAttribute('data-theme');
             const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
-            
-            htmlElement.setAttribute('data-theme', newTheme);
-            localStorage.setItem('bakasubs-theme', newTheme);
-            updateIcon(newTheme);
+            html.setAttribute('data-theme', newTheme);
+            btn.innerHTML = newTheme === 'dark' ? '<i class="fas fa-sun"></i>' : '<i class="fas fa-moon"></i>';
         });
-
-        function updateIcon(theme) {
-            if (theme === 'dark') {
-                icon.className = 'fas fa-sun';
-            } else {
-                icon.className = 'fas fa-moon';
-            }
-        }
     </script>
 </body>
 </html>
