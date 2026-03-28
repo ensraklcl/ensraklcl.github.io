@@ -1,2 +1,60 @@
-<h1>Sitem Başarıyla Kuruldu!</h1>
-<p>Yakında burayı dolduracağım.</p>
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ensar - Portföy</title>
+    <style>
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; margin: 0; padding: 0; background-color: #121212; color: #ffffff; scroll-behavior: smooth; }
+        header { background-color: #1f1f1f; padding: 20px; text-align: center; position: sticky; top: 0; z-index: 100; box-shadow: 0 2px 10px rgba(0,0,0,0.5); }
+        header a { color: #bb86fc; margin: 0 15px; text-decoration: none; font-weight: bold; transition: color 0.3s; }
+        header a:hover { color: #03dac6; }
+        section { padding: 80px 20px; text-align: center; max-width: 800px; margin: auto; min-height: 50vh; }
+        #hakkimda { border-bottom: 1px solid #333; }
+        .proje-grid { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; margin-top: 30px; }
+        .proje-kart { background-color: #1f1f1f; padding: 20px; border-radius: 10px; width: 300px; border: 1px solid #333; transition: transform 0.3s; }
+        .proje-kart:hover { transform: translateY(-5px); }
+        footer { text-align: center; padding: 20px; background-color: #1f1f1f; margin-top: 40px; border-top: 1px solid #333; }
+        h1, h2 { color: #bb86fc; }
+        a.mail-link { color: #03dac6; text-decoration: none; font-size: 1.2rem; }
+    </style>
+</head>
+<body>
+
+    <header>
+        <a href="#hakkimda">Hakkımda</a>
+        <a href="#portfoy">Portföy</a>
+        <a href="#iletisim">İletişim</a>
+    </header>
+
+    <section id="hakkimda">
+        <h1>Selam, Ben Ensar! ✌️</h1>
+        <p>11. sınıf öğrencisiyim ve teknoloji dünyasıyla iç içeyim. Boş zamanlarımda PC sistem optimizasyonları yapıyor, yeni nesil yapay zeka modellerini test ediyor ve sevdiğim seriler için şık tasarımlar hazırlıyorum.</p>
+    </section>
+
+    <section id="portfoy">
+        <h2>Projelerim 🚀</h2>
+        <div class="proje-grid">
+            <div class="proje-kart">
+                <h3>Anilist Profil Tasarımı</h3>
+                <p>Yui Yuigahama temalı, gizli hareketli görseller ve özel bannerlar içeren 10/10'luk kişiselleştirilmiş arayüz çalışması.</p>
+            </div>
+            <div class="proje-kart">
+                <h3>Sistem Optimizasyonu</h3>
+                <p>Kayıt defteri ayarları (MenuShowDelay vb.) ve emülatör yapılandırmaları ile maksimum performans sağlayan tweakler.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="iletisim">
+        <h2>Bana Ulaş 📬</h2>
+        <p>Projelerim hakkında konuşmak, kodları incelemek veya yeni fikirler denemek istersen bana ulaşabilirsin!</p>
+        <p><a class="mail-link" href="mailto:ornek@email.com">Bana E-Posta Gönder</a></p>
+    </section>
+
+    <footer>
+        <p>© 2026 Ensar. Tüm hakları saklıdır. ⚡</p>
+    </footer>
+
+</body>
+</html>
