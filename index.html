@@ -3,57 +3,75 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ensar - Portföy</title>
+    <title>Ensar Fansub - Kaliteli Çeviriler</title>
     <style>
-        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; margin: 0; padding: 0; background-color: #121212; color: #ffffff; scroll-behavior: smooth; }
-        header { background-color: #1f1f1f; padding: 20px; text-align: center; position: sticky; top: 0; z-index: 100; box-shadow: 0 2px 10px rgba(0,0,0,0.5); }
-        header a { color: #bb86fc; margin: 0 15px; text-decoration: none; font-weight: bold; transition: color 0.3s; }
-        header a:hover { color: #03dac6; }
-        section { padding: 80px 20px; text-align: center; max-width: 800px; margin: auto; min-height: 50vh; }
-        #hakkimda { border-bottom: 1px solid #333; }
-        .proje-grid { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; margin-top: 30px; }
-        .proje-kart { background-color: #1f1f1f; padding: 20px; border-radius: 10px; width: 300px; border: 1px solid #333; transition: transform 0.3s; }
-        .proje-kart:hover { transform: translateY(-5px); }
-        footer { text-align: center; padding: 20px; background-color: #1f1f1f; margin-top: 40px; border-top: 1px solid #333; }
-        h1, h2 { color: #bb86fc; }
-        a.mail-link { color: #03dac6; text-decoration: none; font-size: 1.2rem; }
+        body { font-family: 'Segoe UI', Tahoma, Verdana, sans-serif; margin: 0; background-color: #0f0f13; color: #e0e0e0; scroll-behavior: smooth; }
+        header { display: flex; justify-content: space-between; align-items: center; padding: 20px 50px; background-color: #18181c; border-bottom: 2px solid #6c5ce7; position: sticky; top: 0; z-index: 100; }
+        .logo { font-size: 1.5rem; font-weight: bold; color: #6c5ce7; letter-spacing: 2px; text-transform: uppercase; }
+        nav a { color: #b2bec3; margin-left: 20px; text-decoration: none; font-weight: bold; transition: color 0.3s; }
+        nav a:hover { color: #6c5ce7; }
+        section { padding: 60px 20px; max-width: 1000px; margin: auto; text-align: center; }
+        h1, h2 { color: #a29bfe; margin-bottom: 20px; }
+        .hero { min-height: 40vh; display: flex; flex-direction: column; justify-content: center; align-items: center; background: linear-gradient(180deg, #18181c 0%, #0f0f13 100%); }
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; margin-top: 30px; }
+        .kart { background-color: #1e1e24; border-radius: 8px; overflow: hidden; border: 1px solid #2d3436; transition: transform 0.3s, border-color 0.3s; text-align: left; }
+        .kart:hover { transform: translateY(-5px); border-color: #6c5ce7; }
+        .kapak { background-color: #2d3436; height: 150px; display: flex; justify-content: center; align-items: center; color: #636e72; font-style: italic; }
+        .icerik { padding: 15px; }
+        .etiket { background-color: #6c5ce7; color: white; padding: 3px 8px; border-radius: 4px; font-size: 0.8rem; font-weight: bold; margin-bottom: 10px; display: inline-block; }
+        .baslik { font-size: 1.1rem; font-weight: bold; margin: 0 0 10px 0; color: #dfe6e9; }
+        .bilgi { font-size: 0.9rem; color: #b2bec3; margin: 0; }
+        footer { background-color: #18181c; text-align: center; padding: 20px; border-top: 1px solid #2d3436; margin-top: 40px; color: #636e72; font-size: 0.9rem; }
     </style>
 </head>
 <body>
 
     <header>
-        <a href="#hakkimda">Hakkımda</a>
-        <a href="#portfoy">Portföy</a>
-        <a href="#iletisim">İletişim</a>
+        <div class="logo">Ensar Fansub</div>
+        <nav>
+            <a href="#gunceller">Güncel Seriler</a>
+            <a href="#tamamlananlar">Tamamlananlar</a>
+            <a href="#ekip">Ekip</a>
+        </nav>
     </header>
 
-    <section id="hakkimda">
-        <h1>Selam, Ben Ensar! ✌️</h1>
-        <p>11. sınıf öğrencisiyim ve teknoloji dünyasıyla iç içeyim. Boş zamanlarımda PC sistem optimizasyonları yapıyor, yeni nesil yapay zeka modellerini test ediyor ve sevdiğim seriler için şık tasarımlar hazırlıyorum.</p>
+    <section class="hero">
+        <h1>Hoş Geldin! ⚡</h1>
+        <p>En kaliteli anime ve manga çevirilerinin, atmosferi bozmadan hazırlandığı yerdesin. Hız yaparken kaliteyi asla bozmuyoruz.</p>
     </section>
 
-    <section id="portfoy">
-        <h2>Projelerim 🚀</h2>
-        <div class="proje-grid">
-            <div class="proje-kart">
-                <h3>Anilist Profil Tasarımı</h3>
-                <p>Yui Yuigahama temalı, gizli hareketli görseller ve özel bannerlar içeren 10/10'luk kişiselleştirilmiş arayüz çalışması.</p>
+    <section id="gunceller">
+        <h2>Son Eklenen Bölümler 🆕</h2>
+        <div class="grid">
+            <div class="kart">
+                <div class="kapak">Görsel (Örn: Re:Zero)</div>
+                <div class="icerik">
+                    <span class="etiket">Anime</span>
+                    <h3 class="baslik">Re:Zero kara Hajimeru Isekai Seikatsu</h3>
+                    <p class="bilgi">3. Sezon 15. Bölüm eklendi!</p>
+                </div>
             </div>
-            <div class="proje-kart">
-                <h3>Sistem Optimizasyonu</h3>
-                <p>Kayıt defteri ayarları (MenuShowDelay vb.) ve emülatör yapılandırmaları ile maksimum performans sağlayan tweakler.</p>
+            <div class="kart">
+                <div class="kapak">Görsel (Örn: Oregairu)</div>
+                <div class="icerik">
+                    <span class="etiket">Manga</span>
+                    <h3 class="baslik">Yahari Ore no Seishun Love Comedy wa Machigatteiru</h3>
+                    <p class="bilgi">Bölüm 108 Yayında!</p>
+                </div>
+            </div>
+            <div class="kart">
+                <div class="kapak">Görsel (Örn: Rent-a-Girlfriend)</div>
+                <div class="icerik">
+                    <span class="etiket">Anime</span>
+                    <h3 class="baslik">Kanojo, Okarishimasu</h3>
+                    <p class="bilgi">4. Sezon 2. Bölüm eklendi!</p>
+                </div>
             </div>
         </div>
     </section>
 
-    <section id="iletisim">
-        <h2>Bana Ulaş 📬</h2>
-        <p>Projelerim hakkında konuşmak, kodları incelemek veya yeni fikirler denemek istersen bana ulaşabilirsin!</p>
-        <p><a class="mail-link" href="mailto:ornek@email.com">Bana E-Posta Gönder</a></p>
-    </section>
-
     <footer>
-        <p>© 2026 Ensar. Tüm hakları saklıdır. ⚡</p>
+        <p>Bizi Discord sunucumuzdan takip etmeyi unutmayın! 👾 | © 2026 Ensar Fansub</p>
     </footer>
 
 </body>
